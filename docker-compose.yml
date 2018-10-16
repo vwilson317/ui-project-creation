@@ -1,0 +1,14 @@
+version: '3'
+services:
+  {docker_service_name}:
+    build:
+      context: ./{name}
+      args:
+        - build_version=${build_version}  
+    image: ${docker_repository}{docker_repo_path}{name}:${build_version}
+  {docker_service_name}2:
+    build:
+      context: ./{name}
+      args:
+        - build_version=${build_version}
+    image: ${docker_repository}{docker_repo_path}{name}:latest

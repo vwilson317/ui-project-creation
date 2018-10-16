@@ -1,0 +1,16 @@
+server {
+        listen   ${LISTEN_PORT};
+        server_name  _;
+
+        location / {
+                proxy_set_header Host $http_host;
+                root /usr/share/nginx/html;
+                try_files $uri $uri/ /index.html;
+        } 
+
+        # Redirects to the new reporting service.
+        location /api/ {
+                proxy_set_header Host $http_host;
+                proxy_pass ${UPSTREAM_PROTO}://${UPSTREAM};
+        }
+}
